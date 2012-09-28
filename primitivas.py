@@ -1,6 +1,9 @@
 #! /usrbin/python2
 # -*- coding: utf-8 -*-
 
+#pseudo cod tomado del apunte de 
+#Computacion Grafica - Delrieux - Cap 2  
+
 import sys, random
 from PyQt4 import QtGui, QtCore
 
