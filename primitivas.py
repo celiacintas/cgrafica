@@ -24,6 +24,7 @@ class PrimitivePaint(QtGui.QWidget):
 		    qp.begin(self)
 		    self.drawPoints(qp)
 		    self.drawLineDDA(qp, 100.0, 300.0, 30.0, 60.0)
+		    self.drawLineBresenham(qp, 100, 200, 30, 50)
 		    qp.end()
 	    
 	    def drawPoints(self, qp):
@@ -44,8 +45,20 @@ class PrimitivePaint(QtGui.QWidget):
 			    print "y: ",y 
 			    y += m
 
+            def drawLineBresenham(self, qp, x0, x1, y0, y1):
+		    qp.setPen(QtCore.Qt.yellow)
+		    dx = x1 - x0; dy = y1 - y0
+		    ix = 2*dx; iy = 2*dy
+		    y = y0 ; e = iy - dx
 
-
+		    for x in range(x0, x1):
+			    print "x: ",x 
+			    print "y: ",y 
+			    qp.drawPoint(x, y)
+			    if e > 0:
+				    y += 1
+				    e -= ix
+			    e += iy
 
 def main():
     app = QtGui.QApplication(sys.argv)

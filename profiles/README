@@ -1,0 +1,5 @@
+# En el gráfico se puede observar los tiempos de cada método
+# y como por ahora Bresenham la rockea
+
+$ pycallgraph primitivas.py
+
