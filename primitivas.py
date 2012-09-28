@@ -15,7 +15,7 @@ class PrimitivePaint(QtGui.QWidget):
 		self.initUI()
 
 	    def initUI(self):
-		    self.setGeometry(300, 300, 280, 170)
+		    self.setGeometry(300, 300, 400, 300)
 		    self.setWindowTitle('Primitivas')
 		    self.show()
 
@@ -25,7 +25,8 @@ class PrimitivePaint(QtGui.QWidget):
 		    self.drawPoints(qp)
 		    self.drawLineDDA(qp, 100.0, 300.0, 30.0, 60.0)
 		    self.drawLineBresenham(qp, 100, 200, 30, 50)
-		    self.drawCircleDDA(qp, 50.0)
+		    self.drawCircleDDA(qp, 100.0)
+		    self.drawCircleBresnham(qp, 80.0)
 		    qp.end()
 	    
 	    def drawPoints(self, qp):
@@ -65,17 +66,42 @@ class PrimitivePaint(QtGui.QWidget):
 		    qp.setPen(QtCore.Qt.red)
 		    
 		    rx = radio
-		    x = round(rx); y = 30
+		    x = round(rx); y = 0
 
 		    while (y < x):
-			    qp.drawPoint(x, y) ; qp.drawPoint(y, x)
-			    qp.drawPoint(-x, y) ; qp.drawPoint(-y, x)
-			    qp.drawPoint(x, -y) ; qp.drawPoint(y, -x)
-			    qp.drawPoint(-x,-y) ; qp.drawPoint(-y,-x)
+			    qp.drawPoint(x, y) 
+			    qp.drawPoint(y, x)
+			    qp.drawPoint(-x, y) 
+			    qp.drawPoint(-y, x)
+			    qp.drawPoint(x, -y) 
+			    qp.drawPoint(y, -x)
+			    qp.drawPoint(-x,-y) 
+			    qp.drawPoint(-y,-x)
 			    rx -= y/rx
 			    x = round(rx)
 			    y+= 1
 
+	    def drawCircleBresnham(self, qp, radio): 
+		    qp.setPen(QtCore.Qt.magenta)
+
+		    x = radio; y = 0
+		    e = 0
+
+		    while (y < x):
+			    qp.drawPoint(x, y) 
+			    qp.drawPoint(y, x)
+			    qp.drawPoint(-x, y) 
+			    qp.drawPoint(-y, x)
+			    qp.drawPoint(x, -y) 
+			    qp.drawPoint(y, -x)
+			    qp.drawPoint(-x,-y) 
+			    qp.drawPoint(-y,-x)
+			    e += 2*y +1
+			    y += 1
+			    if (2*e) > (2*x - 1):
+				    x -= 1
+				    e -= 2*x + 1
+	
 def main():
     app = QtGui.QApplication(sys.argv)
     ex = PrimitivePaint()
