@@ -1,4 +1,0 @@
-cgrafica
-========
-
-ejercicios de gráfica
