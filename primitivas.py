@@ -25,6 +25,7 @@ class PrimitivePaint(QtGui.QWidget):
 		    self.drawPoints(qp)
 		    self.drawLineDDA(qp, 100.0, 300.0, 30.0, 60.0)
 		    self.drawLineBresenham(qp, 100, 200, 30, 50)
+		    self.drawCircleDDA(qp, 50.0)
 		    qp.end()
 	    
 	    def drawPoints(self, qp):
@@ -58,7 +59,22 @@ class PrimitivePaint(QtGui.QWidget):
 			    if e > 0:
 				    y += 1
 				    e -= ix
-			    e += iy
+			    e += iy	
+
+	    def drawCircleDDA(self, qp, radio):
+		    qp.setPen(QtCore.Qt.red)
+		    
+		    rx = radio
+		    x = round(rx); y = 30
+
+		    while (y < x):
+			    qp.drawPoint(x, y) ; qp.drawPoint(y, x)
+			    qp.drawPoint(-x, y) ; qp.drawPoint(-y, x)
+			    qp.drawPoint(x, -y) ; qp.drawPoint(y, -x)
+			    qp.drawPoint(-x,-y) ; qp.drawPoint(-y,-x)
+			    rx -= y/rx
+			    x = round(rx)
+			    y+= 1
 
 def main():
     app = QtGui.QApplication(sys.argv)
