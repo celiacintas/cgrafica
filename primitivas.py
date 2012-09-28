@@ -16,14 +16,14 @@ class PrimitivePaint(QtGui.QWidget):
 
 	    def initUI(self):
 		    self.setGeometry(300, 300, 280, 170)
-		    self.setWindowTitle('Points')
+		    self.setWindowTitle('Primitivas')
 		    self.show()
 
 	    def paintEvent(self, e):
 		    qp = QtGui.QPainter()
 		    qp.begin(self)
 		    self.drawPoints(qp)
-		    self.drawLine(qp, 100.0, 300.0, 30.0, 60.0)
+		    self.drawLineDDA(qp, 100.0, 300.0, 30.0, 60.0)
 		    qp.end()
 	    
 	    def drawPoints(self, qp):
@@ -34,7 +34,7 @@ class PrimitivePaint(QtGui.QWidget):
 			    y = random.randint(1, size.height()-1)
 			    qp.drawPoint(x, y)     
 
-	    def drawLine(self, qp, x0, x1, y0, y1):
+	    def drawLineDDA(self, qp, x0, x1, y0, y1):
 		    qp.setPen(QtCore.Qt.blue)
 		    m = (y1 - y0)/(x1 - x0)
 		    y = y0
