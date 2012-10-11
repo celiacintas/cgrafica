@@ -18,7 +18,7 @@ class PrimitivePaint(QtGui.QWidget):
 		self.initUI()
 
 	    def initUI(self):
-		    self.setGeometry(300, 300, 400, 300)
+		    self.setGeometry(0, 0, 500, 500)
 		    self.setWindowTitle('Primitivas')
 		    self.show()
 
@@ -30,6 +30,8 @@ class PrimitivePaint(QtGui.QWidget):
 		    self.drawLineBresenham(qp, 100, 200, 30, 50)
 		    self.drawCircleDDA(qp, 100.0)
 		    self.drawCircleBresnham(qp, 80.0)
+		    aristas = [(100, 100), (200, 200), (50, 100) ]
+		    self.drawPoly(qp, aristas)
 		    qp.end()
 	    
 	    def drawPoints(self, qp):
@@ -46,9 +48,15 @@ class PrimitivePaint(QtGui.QWidget):
 		    y = y0
 		    for x in arange(x0, x1, 0.1):
 			    qp.drawPoint(x, y)
-			    print "x: ",x 
-			    print "y: ",y 
+			    #print "x: ",x 
+			    #print "y: ",y 
 			    y += m
+
+	    def drawPoly(self, qp, aristas):
+		    	qp.drawLine(aristas[0][0], aristas[0][1], aristas[1][0], aristas[1][1])
+		    	qp.drawLine(aristas[1][0], aristas[1][1], aristas[2][0], aristas[2][1])
+		    	qp.drawLine(aristas[2][0], aristas[2][1], aristas[0][0], aristas[0][1])
+
 
             def drawLineBresenham(self, qp, x0, x1, y0, y1):
 		    qp.setPen(QtCore.Qt.yellow)
@@ -57,8 +65,6 @@ class PrimitivePaint(QtGui.QWidget):
 		    y = y0 ; e = iy - dx
 
 		    for x in range(x0, x1):
-			    print "x: ",x 
-			    print "y: ",y 
 			    qp.drawPoint(x, y)
 			    if e > 0:
 				    y += 1
