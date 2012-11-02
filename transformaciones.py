@@ -1,7 +1,6 @@
 #! /usrbin/python2
 # -*- coding: utf-8 -*-
 
-#pseudo cod tomado del apunte de 
 #Computacion Grafica - Delrieux - Cap 3  
 
 import sys, random
@@ -11,10 +10,10 @@ import sys, random
 from PyQt4 import QtGui, QtCore
 from numpy import arange, pi, sin, cos
 
-class PoligonosPaint(QtGui.QWidget):
+class Transformaciones(QtGui.QWidget):
 	    
 	    def __init__(self):
-		    super(PoligonosPaint , self).__init__()
+		    super(Transformaciones , self).__init__()
 		    self.initUI()
 		    self.miPix = QtGui.QPixmap("imagenes/gnu.png")
 
@@ -45,7 +44,7 @@ class PoligonosPaint(QtGui.QWidget):
 
 def main():
     app = QtGui.QApplication(sys.argv)
-    ex = PoligonosPaint()
+    ex = Transformaciones()
     sys.exit(app.exec_())
 
 if __name__ == '__main__':
