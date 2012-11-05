@@ -5,9 +5,6 @@
 
 import sys, random
 from PyQt4 import QtGui, QtCore
-
-import sys, random
-from PyQt4 import QtGui, QtCore
 from numpy import arange, pi, sin, cos
 
 class Transformaciones(QtGui.QWidget):
