@@ -1,10 +1,4 @@
-import math
-import time
-import random
-import numpy
-import scipy
 from curva_bezier import curva_bezier, bernstein
-from scipy import misc
 from mpl_toolkits.mplot3d import Axes3D
 import numpy as np
 import matplotlib.pyplot as plt
