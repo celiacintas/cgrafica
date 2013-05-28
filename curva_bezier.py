@@ -5,7 +5,7 @@ from matplotlib import pyplot as plt
 
 bernstein = lambda i, n, t: comb(n, i) * ( t**(n-i) ) * (1 - t)**i
 
-def bezier_curve(control_points, xPoints, yPoints, zPoints=None, n=500):
+def curva_bezier(control_points, xPoints, yPoints, zPoints=None, n=60):
 
     nPoints = control_points.shape[0]
     
@@ -15,8 +15,11 @@ def bezier_curve(control_points, xPoints, yPoints, zPoints=None, n=500):
 
     xvals = np.dot(xPoints, poly)
     yvals = np.dot(yPoints, poly)
-
-    return xvals, yvals
+    if zPoints:
+        zvals = np.dot(zPoints, poly)
+        return xvals, yvals, zvals
+    else:
+        return xvals, yvals
 
 
 if __name__ == "__main__":
@@ -35,7 +38,7 @@ if __name__ == "__main__":
         xpoints = [p[0] for p in control_points]
         ypoints = [p[1] for p in control_points]
 
-        xvals, yvals = bezier_curve(control_points, xpoints, ypoints, n=1000)
+        xvals, yvals = curva_bezier(control_points, xpoints, ypoints, n=1000)
         plt.plot(xvals, yvals)
         plt.plot(xpoints, ypoints, "b*", markersize=10)
         for nr in range(len(control_points)):
