@@ -8,6 +8,7 @@ bernstein = lambda i, n, t: comb(n, i) * ( t**(n-i) ) * (1 - t)**i
 
 P1 = np.array([[1, 1, 0], [0.5, 0.5, 2.0], [1.5, 1.5, 4.0], [1, 1, 6.0]])
 angles = [ [np.pi/2, np.pi, 3*np.pi/2, 0], [np.pi/2,np.pi, 3*np.pi/2, 0]]
+
 def generate_sections(Pij, angles):
     points = []
     lines = []
