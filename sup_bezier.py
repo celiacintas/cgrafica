@@ -19,6 +19,7 @@ if __name__ == "__main__":
             xpoints = [p[0] for p in Pij[i]]
             ypoints = [p[1] for p in Pij[i]]
             zpoints = [p[2] for p in Pij[i]]
+            print len(xpoints), Pij.shape
             xvalues, yvalues, zvalues = curva_bezier(Pij, xpoints, ypoints, zpoints)
             totalsx.append(xvalues)
             totalsy.append(yvalues)
@@ -31,4 +32,3 @@ if __name__ == "__main__":
         ax.plot_wireframe(totalsx, totalsy, totalsz)
         
         plt.show()
-
