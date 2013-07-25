@@ -12,16 +12,12 @@ class Bspline():
         self.points = points
         self.knots = [0] * self.m + [k / self.n for k in xrange(self.n + 1)] + [1] * self.m
 
-        print "knots = ", self.knots
-
     def curve(self, t):
         if t == 1:
             return self.points[-1]
-
         k = self.m
         while k + 1 < len(self.knots) and t > self.knots[k + 1]: 
             k += 1
-
         Nk = [1] + [0] * self.m
         V = lambda m, i, t: (t - self.knots[i]) / (self.knots[i + m] - self.knots[i]) \
                             if self.knots[i] != self.knots[i + m] \
@@ -46,11 +42,9 @@ if __name__ == '__main__':
 
     bspline = Bspline(control_points, degree)
 
-
     points = map(bspline.curve, (i / N for i in xrange(N + 1)))
     x, y = ([p[j] for p in points] for j in (0, 1))
     plt.plot(x, y, 'b-')
-
     x, y = ([p[j] for p in control_points] for j in (0, 1))
     plt.plot(x, y, 'ro-')
 
