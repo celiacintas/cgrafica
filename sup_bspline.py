@@ -4,6 +4,7 @@ import matplotlib.pyplot as plt
 from matplotlib import mlab
 from matplotlib import cm
 from mpl_toolkits.mplot3d import Axes3D
+from mpl_toolkits.mplot3d.art3d import Poly3DCollection
 from numpy import random
 import numpy as np
 from curva_bspline import Bspline
@@ -82,8 +83,8 @@ if __name__ == '__main__':
     #[[1, 2, 0], [1, 3, 0],[1, 4, 0], [1, 5, 0]],
     #[[1, 5, 0], [2, 5, 0],[3, 5, 0], [4, 5, 0]],
     #[[4, 1, 0], [3, 3, -1],[4, 3, 0], [4, 4, 4]]])
-    #control_points = np.random.uniform(1, 10, size=16*3)
-    control_points = np.random.uniform(10, 1, 16*3)
+    control_points = np.random.uniform(1, 2, size=16*3)
+    
     control_points = control_points.reshape((4, 4, 3))
     bsplineSur = BSplineSurface(control_points, 3)
     done_points = []
@@ -114,10 +115,11 @@ if __name__ == '__main__':
     ax = fig.gca(projection='3d')
     xpoints, ypoints, zpoints = getpoints(bsplineSur.points)
     ax.plot(xpoints, ypoints, zpoints, 'ro') #, zs=0, zdir='z', label='zs=0, zdir=z')
-    totalsx, totalsy, totalsz = getpoints(done_points)
-    ax.plot_wireframe(totalsx, totalsy, totalsz, cmap=cm.coolwarm) #color='red')
-    ax.plot_surface(totalsx, totalsy, totalsz, rstride=1, cstride=1, cmap=cm.coolwarm,
-        linewidth=0, antialiased=False)
+    #totalsx, totalsy, totalsz = getpoints(done_points)
+    #verts = [zip(totalsx, totalsy, totalsz)]
+    coll = ax.add_collection3d(Poly3DCollection(done_points))
+
+    #ax.plot_wireframe(totalsx, totalsy, totalsz, cmap=coolwarm) #color='red')
     ax.set_xlabel('X')
     ax.set_ylabel('Y')
     ax.set_zlabel('Z')
